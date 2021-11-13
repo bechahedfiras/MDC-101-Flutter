@@ -110,9 +110,14 @@ class _LoginPageState extends State<LoginPage> {
               },
               style: ButtonStyle(
                 elevation: MaterialStateProperty.all(8.0),
+                shape: MaterialStateProperty.all(
+                  const BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                  ),
+                ),
               ),
-            ),
 
+            ),
             // TODO: Remove filled: true values (103)
 
             const SizedBox(height: 12.0),
