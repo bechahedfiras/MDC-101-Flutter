@@ -11,6 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import 'backdrop.dart'; // New code
+import 'colors.dart';
+import 'home.dart';
+import 'login.dart';
+import 'model/product.dart'; // New code
+import 'supplemental/cut_corners_border.dart';
 
 import 'package:flutter/material.dart';
 import 'colors.dart';
@@ -26,14 +32,16 @@ class ShrineApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shrine',
       // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
-      home: HomePage(),
-      // TODO: Make currentCategory field take _currentCategory (104)
-      // TODO: Pass _currentCategory for frontLayer (104)
-      // TODO: Change backLayer field value to CategoryMenuPage (104)
-      initialRoute: '/login',
-      onGenerateRoute: _getRoute,
-      // TODO: Add a theme (103)
-      theme: _kShrineTheme, // New code
+      home: Backdrop(
+        // TODO: Make currentCategory field take _currentCategory (104)
+        currentCategory: Category.all,
+        // TODO: Pass _currentCategory for frontLayer (104)
+        frontLayer: HomePage(),
+        // TODO: Change backLayer field value to CategoryMenuPage (104)
+        backLayer: Container(color: kShrinePink100),
+        frontTitle: Text('SHRINE'),
+        backTitle: Text('MENU'),
+      ),
     );
   }
 
