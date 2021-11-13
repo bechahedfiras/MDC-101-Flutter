@@ -17,16 +17,34 @@ import 'home.dart';
 import 'login.dart';
 import 'model/product.dart'; // New code
 import 'supplemental/cut_corners_border.dart';
-
+import 'backdrop.dart';
+import 'colors.dart';
+import 'home.dart';
+import 'login.dart';
+import 'category_menu_page.dart';
+import 'model/product.dart';
+import 'supplemental/cut_corners_border.dart';
 import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
 import 'supplemental/cut_corners_border.dart';
 // TODO: Convert ShrineApp to stateful widget (104)
-class ShrineApp extends StatelessWidget {
+class ShrineApp extends StatefulWidget {
   const ShrineApp({Key? key}) : super(key: key);
 
+  @override
+  State<ShrineApp> createState() => _ShrineAppState();
+}
+
+class _ShrineAppState extends State<ShrineApp> {
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,11 +52,14 @@ class ShrineApp extends StatelessWidget {
       // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
       home: Backdrop(
         // TODO: Make currentCategory field take _currentCategory (104)
-        currentCategory: Category.all,
+        currentCategory: _currentCategory,
         // TODO: Pass _currentCategory for frontLayer (104)
         frontLayer: HomePage(),
         // TODO: Change backLayer field value to CategoryMenuPage (104)
-        backLayer: Container(color: kShrinePink100),
+        backLayer: CategoryMenuPage(
+          currentCategory: _currentCategory,
+          onCategoryTap: _onCategoryTap,
+        ),
         frontTitle: Text('SHRINE'),
         backTitle: Text('MENU'),
       ),
@@ -59,7 +80,7 @@ class ShrineApp extends StatelessWidget {
 }
 
 // TODO: Build a Shrine Theme (103)
-final ThemeData _kShrineTheme = _buildShrineTheme();
+
 
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
@@ -107,4 +128,10 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
     bodyColor: kShrineBrown900,
   );
 }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 // TODO: Build a Shrine Text Theme (103)
