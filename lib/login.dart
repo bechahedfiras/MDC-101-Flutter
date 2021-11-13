@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
               },
             ),
             // TODO: Add an elevation to NEXT (103)
+
             // TODO: Add a beveled rectangular border to NEXT (103)
             ElevatedButton(
               child: const Text('NEXT'),
@@ -97,6 +98,9 @@ class _LoginPageState extends State<LoginPage> {
                 // TODO: Show the next page (101)
                 Navigator.pop(context);
               },
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(8.0),
+              ),
             ),
 
             // TODO: Remove filled: true values (103)
